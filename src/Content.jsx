@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { PostsIndex } from "./PostsIndex";
 import { PostsNew } from "./PostsNew";
+import { PostsIndex } from "./PostsIndex";
+import { PostsShow } from "./PostsShow";
 import { Modal } from "./Modal";
 
 export function Content() {
   const [posts, setPosts] = useState([]);
   const [isPostShowVisible, setIsPostShowVisible] = useState(false);
-  const [currecntPost, setCurrentPost] = useState({});
+  const [currentPost, setCurrentPost] = useState({});
 
   const handleIndexPosts = () => {
     axios.get("http://localhost:3000/posts.json").then((response) => {
@@ -19,6 +20,7 @@ export function Content() {
   const handleShowPost = (post) => {
     setIsPostShowVisible(true);
     setCurrentPost(post);
+    console.log(post);
   };
 
   const handleHidePost = () => {
@@ -27,18 +29,16 @@ export function Content() {
 
   useEffect(handleIndexPosts, []);
 
-  <Modal show={true}>
-    <p>TEST</p>
-  </Modal>;
-
   return (
-    <div>
+    <div className="container">
       <PostsNew />
       <PostsIndex myPosts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostShowVisible} onClose={handleHidePost}>
         <div>
-          <h3>Test</h3>
-          <p>This is a test</p>
+          <h2>{currentPost.title}</h2>
+          <p>Author: {currentPost.author} </p>
+          <p></p>
+          <p></p>
         </div>
       </Modal>
     </div>
