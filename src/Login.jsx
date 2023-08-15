@@ -1,35 +1,52 @@
 import axios from "axios";
+import { useState } from "react";
+
+const jwt = localStorage.getItem("jwt");
+if (jwt) {
+  axios.defaults.headers.common["Authorization"] = "Bearer ${jwt}";
+}
 
 export function Login() {
+  const [errors, setErrors] = useState([]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors([]);
     const params = new FormData(event.target);
     axios
-    .post("http://localhost:3000/login.json", params)
-    .then((response) => {
-      console.log(response.data);
-      event.target.reset();
-    })
-    .catch((error)) => {
-      console.log("ERROR", error.response.data.errors);
-    });
+      .post("http://localhost:3000/sessions.json", params)
+      .then((response) => {
+        console.log(response.data);
+        axios.defaults.headers.common["Authorization"] = "Bearer ${jwt}";
+        localStorage.setItem("jwt", response.data.jwt);
+        event.target.reset();
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setErrors(["Invalid email or password"]);
+      });
   };
 
   return (
     <div id="login">
       <h1>Login</h1>
+      <ul>
+        {errors.map((error) => (
+          <li key={error}>{error}</li>
+        ))}
+      </ul>
       <form onSubmit={handleSubmit}>
         <div>
           Email:
-          <input name="email" className="form-control" type="email" />
+          <input name="email" type="email" />
         </div>
         <div>
           Password:
-          <input name ="password" className="form-control" type="password" />
+          <input name="password" type="password" />
         </div>
         <button type="submit">Login</button>
-        </form>
-        </div>
+      </form>
+    </div>
   );
 }
 

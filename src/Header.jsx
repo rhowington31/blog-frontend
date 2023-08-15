@@ -1,3 +1,5 @@
+import { LogoutLink } from "./LogoutLink";
+
 export function Header() {
   return (
     <nav className="navbar navbar-dark navbar-expand-lg" style={{ backgroundColor: "#586b8a" }}>
@@ -7,8 +9,8 @@ export function Header() {
       <button
         className="navbar-toggler mx-4"
         type="button"
-        data-toggle="collapse"
-        data-target="navbarNav"
+        data-bs-toggle="collapse"
+        data-bs-target="navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -31,6 +33,9 @@ export function Header() {
             <a className="nav-link" href="#posts-new">
               New Post
             </a>
+          </li>
+          <li className="nav-item">
+            <LogoutLink />
           </li>
         </ul>
       </div>
