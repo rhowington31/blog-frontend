@@ -1,11 +1,11 @@
 export function Header() {
   return (
-    <nav className="navbar navbar-dark navbar-expand-lg" style={{ "background-color": "#023020" }}>
-      <a className="navbar-brand" href="#">
-        Navbar
+    <nav className="navbar navbar-dark navbar-expand-lg" style={{ backgroundColor: "#586b8a" }}>
+      <a id="brand-name" className="navbar-brand mx-4" href="#">
+        Menu
       </a>
       <button
-        classNmae="navbar-toggler"
+        className="navbar-toggler mx-4"
         type="button"
         data-toggle="collapse"
         data-target="navbarNav"
@@ -23,13 +23,13 @@ export function Header() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#recipes-index">
-              All Recipes
+            <a className="nav-link" href="#posts-index">
+              All Posts
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#recipes-new">
-              New Recipe
+            <a className="nav-link" href="#posts-new">
+              New Post
             </a>
           </li>
         </ul>

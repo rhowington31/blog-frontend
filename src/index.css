@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet&display=swap');
+
+
+#root {
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/carbon_fibre.png");
+  color: whitesmoke;
+}
+
 #posts-index img {
   width: 300px;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+#brand-name {
+  font-family: 'Handjet', cursive;
+  font-size: 40px;
 }
